@@ -1,0 +1,14 @@
+<a href="login.html" class="button">Login</a>
+<a href="register.html" class="button">Register</a>
+<button>Add post</button>
+<ul>
+    {% for element in entries %}
+    <li>
+        <h1> {{ element.title|title}}</h1>
+        <h5>{{element.author}} <button disabled="disabled">Edit post</button> </h5>
+    </li>
+    <h2>{{ element.entries}}</h2>
+
+
+    {% endfor %}
+</ul>
