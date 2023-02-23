@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{%block body%}
+<a href="/blog" class="btn button">Back to posts</a>
+
+<h1>{{context.pk}}.
+    {{context.title|title}}</h1>
+<h5>{{context.author}}</h5>
+
+<h2>{{ context.entries}}</h2>
+
+{%endblock%}

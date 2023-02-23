@@ -1,14 +1,24 @@
-<a href="login.html" class="button">Login</a>
-<a href="register.html" class="button">Register</a>
-<button>Add post</button>
-<ul>
+{%extends "blog/base.html" %}
+
+
+{%block body%}
+<div>
+
+</div>
+<a href="./login/" class="btn btn-secondary">Login</a>
+<a href="./register/" class="btn btn-secondary">Register</a>
+<a href="" class="btn btn-success">Add post</a>
+<div class="container">
     {% for element in entries %}
-    <li>
-        <h1> {{ element.title|title}}</h1>
-        <h5>{{element.author}} <button disabled="disabled">Edit post</button> </h5>
-    </li>
+    <h1>{{element.pk}}.
+        {{ element.title|title}}</h1>
+    <hr>
+    <h5>{{element.author}} <a href="/blog/edit/{{element.id}}" class="btn btn-warning">Edit Post</a> </h5>
+
     <h2>{{ element.entries}}</h2>
 
 
     {% endfor %}
-</ul>
+</div>
+
+{%endblock%}

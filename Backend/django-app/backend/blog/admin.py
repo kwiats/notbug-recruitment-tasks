@@ -5,6 +5,7 @@ from blog.models import Entry
 @admin.register(Entry)
 class EntryAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
         "title",
         "author",
     ]
