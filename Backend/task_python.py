@@ -1,11 +1,15 @@
 """
-1. Create good script to create new list, which only contains users from Poland. Try to do it
+Create good script to create new list, which only contains users from Poland.
+Try to do it
 with List Comprehension.
-users = [{"name": "Kamil", "country":"Poland"}, {"name":"John", "country": "USA"}, {"name":
-"Yeti"}]
-2. Display sum of first ten elements starting from element 5:
+users = [{"name": "Kamil", "country":"Poland"},
+ {"name":"John", "country": "USA"},
+ {"name":"Yeti"}]
+
+Display sum of first ten elements starting from element 5:
 numbers = [1,5,2,3,1,4,1,23,12,2,3,1,2,31,23,1,2,3,1,23,1,2,3,123]
-3. Fill list with powers of 2, n [1..20] """
+
+Fill list with powers of 2, n [1..20] """
 
 # 1
 
@@ -29,7 +33,16 @@ print(new_list)
 
 
 def get_sum(numbers: list, from_index: int, to_index: int) -> int:
-    return sum(numbers[from_index:to_index])
+    if to_index > len(numbers):
+        raise ValueError("End index is higher than lenght of numbers")
+    if from_index < -(len(numbers) + 1):
+        raise ValueError("End index is lower than smallest index of numbers")
+    try:
+        return sum(numbers[from_index:to_index])
+    except ValueError("End index is higher than lenght of numbers"):
+        return 0
+    except ValueError("End index is lower than smallest index of numbers"):
+        return 0
 
 
 numbers = [
