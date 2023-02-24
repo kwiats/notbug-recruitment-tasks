@@ -6,7 +6,7 @@
     <h1>Login</h1>
     <form method="POST">
         {% csrf_token %}
-        {{login_form}}
+        {{form.as_p}}
         <button type="submit">Login</button>
     </form>
 </div>

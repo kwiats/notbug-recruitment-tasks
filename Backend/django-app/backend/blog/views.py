@@ -1,47 +1,81 @@
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views import View
-from django.http import HttpResponse
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, DetailView, UpdateView
 from blog.models import Entry
-from blog.forms import LoginUser, UserCreation
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.views import LogoutView, LoginView
 
 
-def EntryView(request, *args, **kwargs):
-    entries = Entry.objects.all()
-    context = {
-        "entries": entries,
-    }
-    return render(request, "blog/index.html", context=context)
+class RegisterView(CreateView):
+    template_name = "blog/register.html"
+    form_class = UserCreationForm
+    success_url = reverse_lazy("homepage")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        raw_password = form.cleaned_data.get("password1")
+
+        # login user after signing up
+        user = authenticate(
+            username=form.cleaned_data["username"], password=raw_password
+        )
+        login(self.request, user)
+
+        return response
 
 
-def EntryDetailView(request, pk):
-    entry = get_object_or_404(Entry, pk=pk)
-    context = {
-        "entry": entry,
-    }
-    return render(request, "blog/entry.html", context=context)
+class CustomLoginView(LoginView):
+    template_name = "blog/login.html"
+    form_class = AuthenticationForm
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.info(
+            self.request, f"You are now logged in as {self.request.user.username}."
+        )
+        return response
 
 
-def EntryAddedView(request, pk):
-    entry = get_object_or_404(Entry, pk=pk)
-    context = entry
-    return render(request, "blog/add_entry.html", context=context)
+class CustomLogoutView(LogoutView):
+    template_name = "blog/logout.html"
 
 
-def RegisterView(request):
-    return render(request, "blog/register.html")
+class EntryCreateView(LoginRequiredMixin, CreateView):
+    model = Entry
+    template_name = "blog/add_entry.html"
+    fields = ("title", "entries")
+    success_url = "/"
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
-def LoginView(request):
-    if request == "POST":
-        form = AuthenticationForm(request, data=request.data)
-        if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("passowrd")
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, username)
-                return redirect("/blog/")
-    form = AuthenticationForm()
-    return render(request, "blog/login.html", context={"login_form": form})
+class EntryEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Entry
+    template_name = "blog/edit_entry.html"
+    fields = ("title", "entries")
+    success_url = "/"
+
+    def test_func(self):
+        thisArticle = self.get_object()
+        if self.request.user == thisArticle.author:
+            return True
+        return False
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class EntryListView(ListView):
+    model = Entry
+    template_name = "blog/index.html"
+    ordering = ["-updated_at"]
+
+
+class EntryDetailView(DetailView):
+    model = Entry
+    template_name = "blog/entry.html"

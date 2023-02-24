@@ -1,12 +1,16 @@
 {% extends "blog/base.html" %}
 
 {%block body%}
-<a href="/blog" class="btn button">Back to posts</a>
+<div class="container">
+    <a>{{object.title}}</a>
+    <hr>
+    <div class="tekst">{{object.entries}}
+    </div>
+    <hr>
+    {{object.author}} - {{object.updated_at}}
 
-<h1>{{context.pk}}.
-    {{context.title|title}}</h1>
-<h5>{{context.author}}</h5>
+</div>
 
-<h2>{{ context.entries}}</h2>
+
 
 {%endblock%}

@@ -1,10 +1,9 @@
-{%extends "blog/base.html" %}
-
+{% extends "blog/base.html" %}
 
 {%block body%}
 <a href="{% url 'homepage' %}" class="btn btn-primary">Back to posts</a>
 <div class="container py-5">
-    <h1>Add entry</h1>
+    <h1>Edit entry</h1>
     <form method="POST">
         {% csrf_token %}
         {{form.as_p}}

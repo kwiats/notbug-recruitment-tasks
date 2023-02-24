@@ -3,10 +3,11 @@
 
 {%block body%}
 <div class="container py-5">
-    <form action="/your-name/" method="post">
-        <label for="your_name">Your name: </label>
-        <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-        <input type="submit" value="OK">
+    <h1>Register</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">Create account</button>
     </form>
 </div>
 {%endblock%}
