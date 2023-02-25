@@ -1,8 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_restful import Api, Resource
 
 app = Flask(__name__)
 db = SQLAlchemy()
+api = Api(app)
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///sqlite.db"
@@ -22,6 +24,25 @@ class Task(db.Model):
 
     def __repr__(self):
         return f"<Task {self.title} - status {self.done}>"
+
+
+class TodoListAPI(Resource):
+    def get(self):
+        ...
+
+    def post(self):
+        ...
+
+
+class TodoDetailAPI(Resource):
+    def get(self):
+        ...
+
+    def put(self):
+        ...
+
+    def delete(self):
+        ...
 
 
 @app.route("/")
