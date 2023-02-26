@@ -1,3 +1,6 @@
+/* 1.2. RxJs – create a script which will make avg of age persons which
+living in Poland from data bellow. */
+
 const { from } = require("rxjs");
 const { filter, map, reduce } = require("rxjs/operators");
 
@@ -52,15 +55,18 @@ from(locations)
     map((location) => location.person),
     map((personId) => ages.find((age) => age.person === personId).age),
     reduce(
-      (x, age, index) => {
+      (x, age, index, personId) => {
         x.sum += age;
         x.count = index + 1;
+        x.id = personId;
         return x;
       },
-      { sum: 0, count: 0 }
+      { sum: 0, count: 0, id: 0 }
     )
   )
   .subscribe((result) => {
     const avgAge = result.sum / result.count;
+    const person = result.id;
     console.log(`Average age of persons from Poland is ${avgAge}`);
+    console.log(`test: ${person}`);
   });
