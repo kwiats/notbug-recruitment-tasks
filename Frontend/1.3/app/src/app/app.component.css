@@ -4,12 +4,15 @@ h1 {
 }
 
 #table {
-  display: table;
+  display: column;
   margin: 0 auto;
+  width: fit-content;
 }
 
 .tr {
-  display: table-row;
+  text-align: center;
+  display: flex;
+
 }
 
 .td {
@@ -17,7 +20,7 @@ h1 {
   padding: 10px;
   width: 250px;
   border: 1px solid #ddd;
-  text-align: center;
+
 }
 
 #btn {
@@ -46,7 +49,12 @@ h1 {
 }
 
 .td-details {
-  display: table-cell;
-  padding: 10px;
+  display: flex;
+  padding: 15px;
   border: 1px solid #ddd;
+}
+
+img {
+  height: 50px;
+  width: 50px;
 }

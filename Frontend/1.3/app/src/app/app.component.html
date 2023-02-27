@@ -2,14 +2,14 @@
 <div id="table">
   <div class="tr" *ngFor="let pokemon of pokeStats; let i = index">
     <div class="td">
-      <button id="btn" (click)="onClick(i)">{{pokemon.name| titlecase}}</button>
+      <img #front src={{pokemon.sprites.front_default}}>
+      <button id="btn" (click)="onClick(i)">{{pokemon.name|
+        titlecase}}</button>
     </div>
     <div class="td">
       <div id="details-{{i}}" class="hidden">
         <div class="tr-details">
-          <div class="td-details">
-            <img #front src={{pokemon.sprites.front_default}}>
-          </div>
+
           <div class="td-details">
             Type 1: {{pokemon.types[0].type.name | titlecase}}
           </div>
