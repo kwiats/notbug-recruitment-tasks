@@ -1,0 +1,52 @@
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#table {
+  display: table;
+  margin: 0 auto;
+}
+
+.tr {
+  display: table-row;
+}
+
+.td {
+  display: table-cell;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+#btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#btn:hover {
+  background-color: #3e8e41;
+}
+
+.hidden {
+  display: none;
+}
+
+.tr-details {
+  display: table-row;
+}
+
+.td-details {
+  display: table-cell;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
