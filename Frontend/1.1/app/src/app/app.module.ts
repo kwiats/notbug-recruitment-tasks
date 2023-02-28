@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { WelcomeComponent } from './components/welcome/welcome.component';
-import { CarsComponent } from './components/cars/cars.component';
+import { AppComponent } from './app.component';
+import { CarDetailsComponent } from './car-details/car-details.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
-    WelcomeComponent,
-    CarsComponent
+    AppComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [WelcomeComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
