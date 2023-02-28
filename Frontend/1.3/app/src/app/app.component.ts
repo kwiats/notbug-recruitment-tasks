@@ -12,6 +12,7 @@ export class AppComponent {
   pokemonsUrl: string[] = [];
   pokemonsName: string[] = [];
   selectedPokemon: any = null;
+  showDetailsIndex =-1;
 
   pokeStats: any[] = [];
   visable: boolean = false;
@@ -42,9 +43,6 @@ export class AppComponent {
   }
 
   onClick(index: number) {
-    const detailsElement = document.getElementById(`details-${index}`);
-    if (detailsElement) {
-      detailsElement.classList.toggle('hidden');
-    }
+    this.showDetailsIndex = (this.showDetailsIndex === index) ? -1 : index;
   }
 }
