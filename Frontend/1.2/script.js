@@ -49,24 +49,27 @@ let locations = [
   },
 ];
 
-from(locations)
-  .pipe(
-    filter((location) => location.country === "Poland"),
-    map((location) => location.person),
-    map((personId) => ages.find((age) => age.person === personId).age),
-    reduce(
-      (x, age, index, personId) => {
-        x.sum += age;
-        x.count = index + 1;
-        x.id = personId;
-        return x;
-      },
-      { sum: 0, count: 0, id: 0 }
+function calcAvgAge(locations, ages, country){
+  from(locations)
+    .pipe(
+      filter((location) => location.country === country),
+      map((location) => location.person),
+      map((personId) => ages.find((age) => age.person === personId).age),
+      reduce(
+        (x, age, index, personId) => {
+          x.sum += age;
+          x.count = index + 1;
+          x.id = personId;
+          return x;
+        },
+        { sum: 0, count: 0, id: 0 }
+      )
     )
-  )
-  .subscribe((result) => {
-    const avgAge = result.sum / result.count;
-    const person = result.id;
-    console.log(`Average age of persons from Poland is ${avgAge}`);
-    console.log(`test: ${person}`);
-  });
+    .subscribe((result) => {
+      const avgAge = result.sum / result.count;
+      console.log(`Average age of persons from ${country} is ${avgAge}`);
+    });
+  }
+
+calcAvgAge(locations, ages, "Poland")
+
