@@ -17,7 +17,7 @@ about services (parts and costs) and display them in the list in car details
 view.
 ```
 
-## Readme for 1.1
+#### Readme for 1.1
 
 Firstly go to, `cd Frontend/1.1/app`, then run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
@@ -26,7 +26,7 @@ Firstly go to, `cd Frontend/1.1/app`, then run `ng serve` for a dev server. Navi
 living in Poland from data bellow.
 ```
 
-## Readme for 1.2
+#### Readme for 1.2
 
 Firstly go to `cd Frontend/1.1/app`, then run `node script.js` and look at terminal to see results.
 
@@ -35,7 +35,7 @@ Firstly go to `cd Frontend/1.1/app`, then run `node script.js` and look at termi
 of them. Data need to be fetched from https://pokeapi.co using HTTP requests.
 ```
 
-## Readme for 1.3
+#### Readme for 1.3
 
 Firstly go with `cd Frontend/1.3/app`, then run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
@@ -53,7 +53,7 @@ create task, list, update and delete them. Data could be “mocked”, extra poi
 using SQLite or PostgreSQL. URLS need to be in REST API convention.
 ```
 
-## Readme for 2.1
+#### Readme for 2.1
 
 Firstly go with `cd Backend/2.1/` then run `python3 app.py`. You can test it by using `postman` with prepared json `nobug.postman_collection.json`.
 
@@ -64,7 +64,7 @@ create a new accounts.
 
 ```
 
-## Readme for 2.2
+#### Readme for 2.2
 
 Firstly go with `cd Backend/2.2/`, then run `python manage.py runserver` for a dev server. Navigate to `http://localhost:8000/`.
 
@@ -79,6 +79,6 @@ numbers = [1,5,2,3,1,4,1,23,12,2,3,1,2,31,23,1,2,3,1,23,1,2,3,123]
 • Fill list with powers of 2, n [1..20]
 ```
 
-## Readme for 2.4
+#### Readme for 2.4
 
 Firstly go with `cd Backend/2.4/`, then run `python3 task_python.py` and look at terminal for results.
